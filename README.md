@@ -15,7 +15,7 @@ Corre  `ng serve` para levantar el servidor.
 ## Prueba Técnica para Desarrollador Front-End Angular
 
 Las respuestas a las preguntas se pueden encontrar en:
-Questions.md
+Questions.md en la raiz del proyecto
 
 ## Ejemplo de funcionamiento
 
