@@ -12,6 +12,7 @@ import { DividerModule } from 'primeng/divider';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { InputTextModule } from 'primeng/inputtext';
     ButtonModule,
     DividerModule,
     TableModule,
-    InputTextModule
+    InputTextModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

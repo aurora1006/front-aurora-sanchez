@@ -7,7 +7,7 @@
     
     <div *ngIf="users">
         <p-table
-            #dt1
+            #tb
             [value]="users"
             [paginator]="true"
             [rows]="5"
@@ -17,9 +17,8 @@
             [globalFilterFields]="['name']">
             <ng-template pTemplate="caption">
                 <div class="flex">
-                    <span class="p-input-icon-left ml-auto">
-                        <i class="pi pi-search"></i>
-                        <input pInputText type="text" placeholder="Search keyword" />
+                    <span class="p-input-icon-left ml-auto" style="margin: 5px;">
+                        <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Search keyword" />
                     </span>
                 </div>
             </ng-template>

@@ -4,26 +4,28 @@
     </div>
     <p-divider></p-divider>
     <div class="formgrid grid">
-        <div class="field col-12 md:col-6">
-            <label for="firstname6">Name:</label>
-            {{user.name}}
+        <div class="flex flex-column gap-2" style="margin: 5px;">
+            <label for="username">Name: </label>
+            <input pInputText id="name" [(ngModel)]="user.name" [disabled]="true"/>
         </div>
-        <div class="field col-12 md:col-6">
-            <label for="firstname6">User name:</label>
-            {{user.username}}
+        <div class="flex flex-column gap-2" style="margin: 5px;">
+            <label for="username">Username: </label>
+            <input pInputText id="name" [(ngModel)]="user.username" [disabled]="true"/>
         </div>
-        <div class="field col-12 md:col-6">
-            <label for="firstname6">Phone:</label>
-            {{user.phone}}
+        <div class="flex flex-column gap-2" style="margin: 5px;">
+            <label for="username">Phone: </label>
+            <input pInputText id="name" [(ngModel)]="user.phone" [disabled]="true"/>
         </div>
-        <div class="field col-12 md:col-6">
-            <label for="firstname6">Email:</label>
-            {{user.email}}
+        <div class="flex flex-column gap-2" style="margin: 5px;">
+            <label for="username">Email: </label>
+            <input pInputText id="name" [(ngModel)]="user.email" [disabled]="true"/>
         </div>
-        <div class="field col-12 md:col-6">
-            <label for="firstname6">Website:</label>
-            {{user.website}}
+        <div class="flex flex-column gap-2" style="margin: 5px;">
+            <label for="username">Website: </label>
+            <input pInputText id="name" [(ngModel)]="user.website" [disabled]="true"/>
         </div>
+    </div>
+    <div style="text-align: center; padding:3px;">
         <p-button (onClick)="regresar()" label="Regresar"></p-button>
     </div>
 </div>

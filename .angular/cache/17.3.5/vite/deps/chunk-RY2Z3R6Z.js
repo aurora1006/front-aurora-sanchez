@@ -1,5 +1,4 @@
 import {
-  CommonModule,
   getDOM
 } from "./chunk-CVLI7GHA.js";
 import {
@@ -8,7 +7,6 @@ import {
   ElementRef,
   EventEmitter,
   Host,
-  HostListener,
   Inject,
   Injectable,
   InjectionToken,
@@ -275,6 +273,282 @@ function hasValidLength(value) {
 var NG_VALIDATORS = new InjectionToken(ngDevMode ? "NgValidators" : "");
 var NG_ASYNC_VALIDATORS = new InjectionToken(ngDevMode ? "NgAsyncValidators" : "");
 var EMAIL_REGEXP = /^(?=.{1,254}$)(?=.{1,64}@)[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+var Validators = class {
+  /**
+   * @description
+   * Validator that requires the control's value to be greater than or equal to the provided number.
+   *
+   * @usageNotes
+   *
+   * ### Validate against a minimum of 3
+   *
+   * ```typescript
+   * const control = new FormControl(2, Validators.min(3));
+   *
+   * console.log(control.errors); // {min: {min: 3, actual: 2}}
+   * ```
+   *
+   * @returns A validator function that returns an error map with the
+   * `min` property if the validation check fails, otherwise `null`.
+   *
+   * @see {@link updateValueAndValidity()}
+   *
+   */
+  static min(min) {
+    return minValidator(min);
+  }
+  /**
+   * @description
+   * Validator that requires the control's value to be less than or equal to the provided number.
+   *
+   * @usageNotes
+   *
+   * ### Validate against a maximum of 15
+   *
+   * ```typescript
+   * const control = new FormControl(16, Validators.max(15));
+   *
+   * console.log(control.errors); // {max: {max: 15, actual: 16}}
+   * ```
+   *
+   * @returns A validator function that returns an error map with the
+   * `max` property if the validation check fails, otherwise `null`.
+   *
+   * @see {@link updateValueAndValidity()}
+   *
+   */
+  static max(max) {
+    return maxValidator(max);
+  }
+  /**
+   * @description
+   * Validator that requires the control have a non-empty value.
+   *
+   * @usageNotes
+   *
+   * ### Validate that the field is non-empty
+   *
+   * ```typescript
+   * const control = new FormControl('', Validators.required);
+   *
+   * console.log(control.errors); // {required: true}
+   * ```
+   *
+   * @returns An error map with the `required` property
+   * if the validation check fails, otherwise `null`.
+   *
+   * @see {@link updateValueAndValidity()}
+   *
+   */
+  static required(control) {
+    return requiredValidator(control);
+  }
+  /**
+   * @description
+   * Validator that requires the control's value be true. This validator is commonly
+   * used for required checkboxes.
+   *
+   * @usageNotes
+   *
+   * ### Validate that the field value is true
+   *
+   * ```typescript
+   * const control = new FormControl('some value', Validators.requiredTrue);
+   *
+   * console.log(control.errors); // {required: true}
+   * ```
+   *
+   * @returns An error map that contains the `required` property
+   * set to `true` if the validation check fails, otherwise `null`.
+   *
+   * @see {@link updateValueAndValidity()}
+   *
+   */
+  static requiredTrue(control) {
+    return requiredTrueValidator(control);
+  }
+  /**
+   * @description
+   * Validator that requires the control's value pass an email validation test.
+   *
+   * Tests the value using a [regular
+   * expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions)
+   * pattern suitable for common use cases. The pattern is based on the definition of a valid email
+   * address in the [WHATWG HTML
+   * specification](https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address) with
+   * some enhancements to incorporate more RFC rules (such as rules related to domain names and the
+   * lengths of different parts of the address).
+   *
+   * The differences from the WHATWG version include:
+   * - Disallow `local-part` (the part before the `@` symbol) to begin or end with a period (`.`).
+   * - Disallow `local-part` to be longer than 64 characters.
+   * - Disallow the whole address to be longer than 254 characters.
+   *
+   * If this pattern does not satisfy your business needs, you can use `Validators.pattern()` to
+   * validate the value against a different pattern.
+   *
+   * @usageNotes
+   *
+   * ### Validate that the field matches a valid email pattern
+   *
+   * ```typescript
+   * const control = new FormControl('bad@', Validators.email);
+   *
+   * console.log(control.errors); // {email: true}
+   * ```
+   *
+   * @returns An error map with the `email` property
+   * if the validation check fails, otherwise `null`.
+   *
+   * @see {@link updateValueAndValidity()}
+   *
+   */
+  static email(control) {
+    return emailValidator(control);
+  }
+  /**
+   * @description
+   * Validator that requires the length of the control's value to be greater than or equal
+   * to the provided minimum length. This validator is also provided by default if you use the
+   * the HTML5 `minlength` attribute. Note that the `minLength` validator is intended to be used
+   * only for types that have a numeric `length` property, such as strings or arrays. The
+   * `minLength` validator logic is also not invoked for values when their `length` property is 0
+   * (for example in case of an empty string or an empty array), to support optional controls. You
+   * can use the standard `required` validator if empty values should not be considered valid.
+   *
+   * @usageNotes
+   *
+   * ### Validate that the field has a minimum of 3 characters
+   *
+   * ```typescript
+   * const control = new FormControl('ng', Validators.minLength(3));
+   *
+   * console.log(control.errors); // {minlength: {requiredLength: 3, actualLength: 2}}
+   * ```
+   *
+   * ```html
+   * <input minlength="5">
+   * ```
+   *
+   * @returns A validator function that returns an error map with the
+   * `minlength` property if the validation check fails, otherwise `null`.
+   *
+   * @see {@link updateValueAndValidity()}
+   *
+   */
+  static minLength(minLength) {
+    return minLengthValidator(minLength);
+  }
+  /**
+   * @description
+   * Validator that requires the length of the control's value to be less than or equal
+   * to the provided maximum length. This validator is also provided by default if you use the
+   * the HTML5 `maxlength` attribute. Note that the `maxLength` validator is intended to be used
+   * only for types that have a numeric `length` property, such as strings or arrays.
+   *
+   * @usageNotes
+   *
+   * ### Validate that the field has maximum of 5 characters
+   *
+   * ```typescript
+   * const control = new FormControl('Angular', Validators.maxLength(5));
+   *
+   * console.log(control.errors); // {maxlength: {requiredLength: 5, actualLength: 7}}
+   * ```
+   *
+   * ```html
+   * <input maxlength="5">
+   * ```
+   *
+   * @returns A validator function that returns an error map with the
+   * `maxlength` property if the validation check fails, otherwise `null`.
+   *
+   * @see {@link updateValueAndValidity()}
+   *
+   */
+  static maxLength(maxLength) {
+    return maxLengthValidator(maxLength);
+  }
+  /**
+   * @description
+   * Validator that requires the control's value to match a regex pattern. This validator is also
+   * provided by default if you use the HTML5 `pattern` attribute.
+   *
+   * @usageNotes
+   *
+   * ### Validate that the field only contains letters or spaces
+   *
+   * ```typescript
+   * const control = new FormControl('1', Validators.pattern('[a-zA-Z ]*'));
+   *
+   * console.log(control.errors); // {pattern: {requiredPattern: '^[a-zA-Z ]*$', actualValue: '1'}}
+   * ```
+   *
+   * ```html
+   * <input pattern="[a-zA-Z ]*">
+   * ```
+   *
+   * ### Pattern matching with the global or sticky flag
+   *
+   * `RegExp` objects created with the `g` or `y` flags that are passed into `Validators.pattern`
+   * can produce different results on the same input when validations are run consecutively. This is
+   * due to how the behavior of `RegExp.prototype.test` is
+   * specified in [ECMA-262](https://tc39.es/ecma262/#sec-regexpbuiltinexec)
+   * (`RegExp` preserves the index of the last match when the global or sticky flag is used).
+   * Due to this behavior, it is recommended that when using
+   * `Validators.pattern` you **do not** pass in a `RegExp` object with either the global or sticky
+   * flag enabled.
+   *
+   * ```typescript
+   * // Not recommended (since the `g` flag is used)
+   * const controlOne = new FormControl('1', Validators.pattern(/foo/g));
+   *
+   * // Good
+   * const controlTwo = new FormControl('1', Validators.pattern(/foo/));
+   * ```
+   *
+   * @param pattern A regular expression to be used as is to test the values, or a string.
+   * If a string is passed, the `^` character is prepended and the `$` character is
+   * appended to the provided string (if not already present), and the resulting regular
+   * expression is used to test the values.
+   *
+   * @returns A validator function that returns an error map with the
+   * `pattern` property if the validation check fails, otherwise `null`.
+   *
+   * @see {@link updateValueAndValidity()}
+   *
+   */
+  static pattern(pattern) {
+    return patternValidator(pattern);
+  }
+  /**
+   * @description
+   * Validator that performs no operation.
+   *
+   * @see {@link updateValueAndValidity()}
+   *
+   */
+  static nullValidator(control) {
+    return nullValidator(control);
+  }
+  static compose(validators) {
+    return compose(validators);
+  }
+  /**
+   * @description
+   * Compose multiple async validators into a single function that returns the union
+   * of the individual error objects for the provided control.
+   *
+   * @returns A validator function that returns an error map with the
+   * merged error objects of the async validators if the validation check fails, otherwise `null`.
+   *
+   * @see {@link updateValueAndValidity()}
+   *
+   */
+  static composeAsync(validators) {
+    return composeAsync(validators);
+  }
+};
 function minValidator(min) {
   return (control) => {
     if (isEmptyInputValue(control.value) || isEmptyInputValue(min)) {
@@ -987,20 +1261,20 @@ function ngModelWarning(directiveName) {
   https://angular.io/api/forms/${directiveName === "formControl" ? "FormControlDirective" : "FormControlName"}#use-with-ngmodel
   `;
 }
-function describeKey(isFormGroup, key) {
-  return isFormGroup ? `with name: '${key}'` : `at index: ${key}`;
+function describeKey(isFormGroup2, key) {
+  return isFormGroup2 ? `with name: '${key}'` : `at index: ${key}`;
 }
-function noControlsError(isFormGroup) {
+function noControlsError(isFormGroup2) {
   return `
-    There are no form controls registered with this ${isFormGroup ? "group" : "array"} yet. If you're using ngModel,
+    There are no form controls registered with this ${isFormGroup2 ? "group" : "array"} yet. If you're using ngModel,
     you may want to check next tick (e.g. use setTimeout).
   `;
 }
-function missingControlError(isFormGroup, key) {
-  return `Cannot find form control ${describeKey(isFormGroup, key)}`;
+function missingControlError(isFormGroup2, key) {
+  return `Cannot find form control ${describeKey(isFormGroup2, key)}`;
 }
-function missingControlValueError(isFormGroup, key) {
-  return `Must supply a value for form control ${describeKey(isFormGroup, key)}`;
+function missingControlValueError(isFormGroup2, key) {
+  return `Must supply a value for form control ${describeKey(isFormGroup2, key)}`;
 }
 var VALID = "VALID";
 var INVALID = "INVALID";
@@ -2201,8 +2475,11 @@ function validateFormGroupControls(controls) {
     console.warn(`FormGroup keys cannot include \`.\`, please replace the keys for: ${invalidKeys.join(",")}.`);
   }
 }
+var UntypedFormGroup = FormGroup;
+var isFormGroup = (control) => control instanceof FormGroup;
 var FormRecord = class extends FormGroup {
 };
+var isFormRecord = (control) => control instanceof FormRecord;
 var CALL_SET_DISABLED_STATE = new InjectionToken("CallSetDisabledState", {
   providedIn: "root",
   factory: () => setDisabledStateDefault
@@ -2818,6 +3095,7 @@ var FormControl = class FormControl2 extends AbstractControl {
     }
   }
 };
+var UntypedFormControl = FormControl;
 var isFormControl = (control) => control instanceof FormControl;
 var _AbstractFormGroupDirective = class _AbstractFormGroupDirective extends ControlContainer {
   /** @nodoc */
@@ -5713,6 +5991,8 @@ var FormArray = class extends AbstractControl {
     return this.at(name) ?? null;
   }
 };
+var UntypedFormArray = FormArray;
+var isFormArray = (control) => control instanceof FormArray;
 function isAbstractControlOptions(options) {
   return !!options && (options.asyncValidators !== void 0 || options.validators !== void 0 || options.updateOn !== void 0);
 }
@@ -6041,109 +6321,63 @@ var ReactiveFormsModule = _ReactiveFormsModule;
   }], null, null);
 })();
 
-// node_modules/primeng/fesm2022/primeng-inputtext.mjs
-var InputText = class _InputText {
-  el;
-  ngModel;
-  cd;
-  filled;
-  constructor(el, ngModel, cd) {
-    this.el = el;
-    this.ngModel = ngModel;
-    this.cd = cd;
-  }
-  ngAfterViewInit() {
-    this.updateFilledState();
-    this.cd.detectChanges();
-  }
-  ngDoCheck() {
-    this.updateFilledState();
-  }
-  onInput() {
-    this.updateFilledState();
-  }
-  updateFilledState() {
-    this.filled = this.el.nativeElement.value && this.el.nativeElement.value.length || this.ngModel && this.ngModel.model;
-  }
-  static ɵfac = function InputText_Factory(t) {
-    return new (t || _InputText)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(NgModel, 8), ɵɵdirectiveInject(ChangeDetectorRef));
-  };
-  static ɵdir = ɵɵdefineDirective({
-    type: _InputText,
-    selectors: [["", "pInputText", ""]],
-    hostAttrs: [1, "p-inputtext", "p-component", "p-element"],
-    hostVars: 2,
-    hostBindings: function InputText_HostBindings(rf, ctx) {
-      if (rf & 1) {
-        ɵɵlistener("input", function InputText_input_HostBindingHandler($event) {
-          return ctx.onInput($event);
-        });
-      }
-      if (rf & 2) {
-        ɵɵclassProp("p-filled", ctx.filled);
-      }
-    }
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(InputText, [{
-    type: Directive,
-    args: [{
-      selector: "[pInputText]",
-      host: {
-        class: "p-inputtext p-component p-element",
-        "[class.p-filled]": "filled"
-      }
-    }]
-  }], () => [{
-    type: ElementRef
-  }, {
-    type: NgModel,
-    decorators: [{
-      type: Optional
-    }]
-  }, {
-    type: ChangeDetectorRef
-  }], {
-    onInput: [{
-      type: HostListener,
-      args: ["input", ["$event"]]
-    }]
-  });
-})();
-var InputTextModule = class _InputTextModule {
-  static ɵfac = function InputTextModule_Factory(t) {
-    return new (t || _InputTextModule)();
-  };
-  static ɵmod = ɵɵdefineNgModule({
-    type: _InputTextModule,
-    declarations: [InputText],
-    imports: [CommonModule],
-    exports: [InputText]
-  });
-  static ɵinj = ɵɵdefineInjector({
-    imports: [CommonModule]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(InputTextModule, [{
-    type: NgModule,
-    args: [{
-      imports: [CommonModule],
-      exports: [InputText],
-      declarations: [InputText]
-    }]
-  }], null, null);
-})();
-
 export {
   NG_VALUE_ACCESSOR,
+  CheckboxControlValueAccessor,
+  COMPOSITION_BUFFER_MODE,
+  DefaultValueAccessor,
+  NG_VALIDATORS,
+  NG_ASYNC_VALIDATORS,
+  Validators,
+  AbstractControlDirective,
+  ControlContainer,
   NgControl,
   NgControlStatus,
+  NgControlStatusGroup,
+  AbstractControl,
+  FormGroup,
+  UntypedFormGroup,
+  isFormGroup,
+  FormRecord,
+  isFormRecord,
+  NgForm,
+  FormControl,
+  UntypedFormControl,
+  isFormControl,
+  AbstractFormGroupDirective,
+  NgModelGroup,
   NgModel,
+  ɵNgNoValidate,
+  NumberValueAccessor,
+  RadioControlValueAccessor,
+  RangeValueAccessor,
+  FormControlDirective,
+  FormGroupDirective,
+  FormGroupName,
+  FormArrayName,
+  FormControlName,
+  SelectControlValueAccessor,
+  NgSelectOption,
+  SelectMultipleControlValueAccessor,
+  ɵNgSelectMultipleOption,
+  MaxValidator,
+  MinValidator,
+  RequiredValidator,
+  CheckboxRequiredValidator,
+  EmailValidator,
+  MinLengthValidator,
+  MaxLengthValidator,
+  PatternValidator,
+  ɵInternalFormsSharedModule,
+  FormArray,
+  UntypedFormArray,
+  isFormArray,
+  FormBuilder,
+  NonNullableFormBuilder,
+  UntypedFormBuilder,
+  VERSION,
   FormsModule,
-  InputText,
-  InputTextModule
+  ReactiveFormsModule
 };
 /*! Bundled license information:
 
@@ -6154,4 +6388,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-DFMHK6KB.js.map
+//# sourceMappingURL=chunk-RY2Z3R6Z.js.map

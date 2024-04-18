@@ -2,7 +2,7 @@ import {
   Button,
   ButtonDirective,
   ButtonModule
-} from "./chunk-HNIAFNCG.js";
+} from "./chunk-TDIDPJQD.js";
 import "./chunk-2QAOXEUH.js";
 import "./chunk-CVLI7GHA.js";
 import "./chunk-P6BN7I6E.js";

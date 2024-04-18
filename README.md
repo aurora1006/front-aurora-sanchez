@@ -1,4 +1,4 @@
-# FrontAuroraSanchez
+# Front Aurora Sanchez
 
 ## Build
 
@@ -12,4 +12,6 @@ Corre  `ng serve` para levantar el servidor.
 
 `http://localhost:4200/users`
 
-![Users](users.png)
+## Ejemplo de funcionamiento
+
+![App](app.mov)

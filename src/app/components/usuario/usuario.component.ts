@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router, NavigationExtras } from '@angular/router';
-import { Table } from 'primeng/table';
+import { Table } from 'primeng/table'; 
 
 @Component({
   selector: 'app-usuario',
@@ -13,6 +13,8 @@ export class UsuarioComponent {
   users: any[] | undefined;
   user: any;
   detail: boolean = false;
+
+  @ViewChild('tb') tb: Table | undefined;
 
   constructor(private userSrv: UserService, private router: Router) { }
 
@@ -31,7 +33,7 @@ export class UsuarioComponent {
     this.router.navigate([ `/detail` ], userObj);
   }
 
-  clear(table: Table) {
-    table.clear();
-}
+  applyFilterGlobal($event: any, stringVal: any) {
+    this.tb!.filterGlobal(($event.target as HTMLInputElement).value, stringVal);
+  }
 }
