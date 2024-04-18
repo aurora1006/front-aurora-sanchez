@@ -15,4 +15,4 @@ Corre  `ng serve` para levantar el servidor.
 ## Ejemplo de funcionamiento
 
 
-![User](pantallas/user.png)
+![User](pantallas/users.png)
