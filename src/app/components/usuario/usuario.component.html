@@ -1,7 +1,9 @@
 <div *ngIf="!detail">
+    <p>USUARIOS</p>
+    <p-divider></p-divider>
     <div *ngIf="users">
         <p-dataView #dv [value]="users" [rows]="5" [paginator]="true">
-            <ng-template let-user pTemplate="list">
+            <ng-template let-users pTemplate="list">
                 <div class="col-12 pb-3" *ngFor="let item of users; let first = first">
                         <div class="col-6">
                             <div class="text-2xl font-bold text-900">
@@ -16,6 +18,5 @@
 </div>
 <div *ngIf="detail">
     <app-detalle-usuario [user]="user"></app-detalle-usuario>
-    <p-button (onClick)="irDetalle(false, null)" label="return"></p-button>
-
+    <p-button (onClick)="irDetalle(false, null)" label="Regresar"></p-button>
 </div>
