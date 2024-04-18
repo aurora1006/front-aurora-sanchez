@@ -14,4 +14,5 @@ Corre  `ng serve` para levantar el servidor.
 
 ## Ejemplo de funcionamiento
 
-![App](app.mov)
+
+![User](panntallas/user.png)
