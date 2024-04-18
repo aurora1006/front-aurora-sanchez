@@ -1,6 +1,6 @@
-<div *ngIf="!detail">
-    <div class="field col-12 md:col-6">
-        <p>USUARIOS</p>
+<div *ngIf="!detail" style="margin: 100px;">
+    <div style="text-align: center; padding:3px; background-color: #f0f0f0;">
+        <h1 style="font-size: 24px; color: #333;">USUARIOS</h1>
     </div>
     
     <p-divider></p-divider>
@@ -16,13 +16,11 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th style="width:25%">Nombre</th>
-                    <!--<th style="width:25%">Detail</th>-->
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-user>
                 <tr [pSelectableRow]="user">
                     <td>{{ user.name }}</td>
-                    <!--<td><p-button (onClick)="irDetalle(true, user)" label="Ir al detalle"></p-button></td>-->
                 </tr>
             </ng-template>
             <ng-template pTemplate="paginatorleft">
@@ -34,7 +32,7 @@
         </p-table>
     </div>
 </div>
-<div *ngIf="detail">
+<div *ngIf="detail" style="margin: 100px;">
     <app-detalle-usuario [user]="user"></app-detalle-usuario>
     <p-button (onClick)="irDetalle(false, null)" label="Regresar"></p-button>
 </div>
