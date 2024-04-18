@@ -12,6 +12,11 @@ Corre  `ng serve` para levantar el servidor.
 
 `http://localhost:4200/users`
 
+## Prueba Técnica para Desarrollador Front-End Angular
+
+Las respuestas a las preguntas se pueden encontrar en:
+Questions.md
+
 ## Ejemplo de funcionamiento
 
 
