@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UsersApiService } from './services.rest/users.api.service';
-import { DetalleUsuarioComponent } from './modules/users/detalle-usuario/detalle-usuario.component';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DetalleUsuarioComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [UsersApiService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

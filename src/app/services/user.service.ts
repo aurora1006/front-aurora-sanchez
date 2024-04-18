@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersApiService {
+export class UserService {
 
   private apiUrl = 'https://jsonplaceholder.typicode.com/users';
 

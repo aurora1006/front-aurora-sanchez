@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { UsersApiService } from './services.rest/users.api.service';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +10,10 @@ export class AppComponent implements OnInit {
   title = 'front-aurora-sanchez';
   datos: any[] | undefined;
 
-  constructor(private userService: UsersApiService) { }
+  constructor(private userSrv: UserService) { }
 
   ngOnInit(): void {
-    console.log("ngOnInit");
-    this.userService.getUsers().subscribe(data => {
+    this.userSrv.getUsers().subscribe(data => {
       this.datos = data;
       console.log(this.datos);
     });
