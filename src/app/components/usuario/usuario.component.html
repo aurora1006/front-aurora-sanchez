@@ -1,19 +1,37 @@
 <div *ngIf="!detail">
-    <p>USUARIOS</p>
+    <div class="field col-12 md:col-6">
+        <p>USUARIOS</p>
+    </div>
+    
     <p-divider></p-divider>
+    
     <div *ngIf="users">
-        <p-dataView #dv [value]="users" [rows]="5" [paginator]="true">
-            <ng-template let-users pTemplate="list">
-                <div class="col-12 pb-3" *ngFor="let item of users; let first = first">
-                        <div class="col-6">
-                            <div class="text-2xl font-bold text-900">
-                                {{ item.name }} 
-                                <p-button (onClick)="irDetalle(true, item)" label="Ir al detalle"></p-button>
-                            </div>
-                        </div>
-                </div>
+        <p-table
+            [value]="users"
+            [paginator]="true"
+            [rows]="5"
+            selectionMode="single"
+            [(selection)]="user"
+            (onRowSelect)="irDetalle(true, user)">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width:25%">Nombre</th>
+                    <!--<th style="width:25%">Detail</th>-->
+                </tr>
             </ng-template>
-        </p-dataView>
+            <ng-template pTemplate="body" let-user>
+                <tr [pSelectableRow]="user">
+                    <td>{{ user.name }}</td>
+                    <!--<td><p-button (onClick)="irDetalle(true, user)" label="Ir al detalle"></p-button></td>-->
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="paginatorleft">
+                <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+            </ng-template>
+            <ng-template pTemplate="paginatorright">
+                <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+            </ng-template>
+        </p-table>
     </div>
 </div>
 <div *ngIf="detail">

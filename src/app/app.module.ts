@@ -10,6 +10,7 @@ import { DataViewModule } from 'primeng/dataview';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 import { UsuarioComponent } from './components/usuario/usuario.component';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
     HttpClientModule,
     DataViewModule,
     ButtonModule,
-    DividerModule
+    DividerModule,
+    TableModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
