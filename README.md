@@ -16,3 +16,7 @@ Corre  `ng serve` para levantar el servidor.
 
 
 ![User](pantallas/users.png)
+
+![User](pantallas/filter.png)
+
+![User](pantallas/detalle.png)
