@@ -1,7 +1,8 @@
 import {
   Paginator,
   PaginatorModule
-} from "./chunk-3RNJWYUM.js";
+} from "./chunk-B6DQYGB3.js";
+import "./chunk-DFMHK6KB.js";
 import {
   BaseIcon,
   SpinnerIcon

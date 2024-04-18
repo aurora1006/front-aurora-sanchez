@@ -11,6 +11,7 @@ import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TableModule } from 'primeng/table';
     DataViewModule,
     ButtonModule,
     DividerModule,
-    TableModule
+    TableModule,
+    InputTextModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

@@ -2,14 +2,8 @@ import {
   ChevronDownIcon,
   Dropdown,
   DropdownModule,
-  FormsModule,
   InputNumber,
   InputNumberModule,
-  InputText,
-  InputTextModule,
-  NG_VALUE_ACCESSOR,
-  NgControlStatus,
-  NgModel,
   Paginator,
   PaginatorModule,
   Scroller,
@@ -20,7 +14,15 @@ import {
   style,
   transition,
   trigger
-} from "./chunk-3RNJWYUM.js";
+} from "./chunk-B6DQYGB3.js";
+import {
+  FormsModule,
+  InputText,
+  InputTextModule,
+  NG_VALUE_ACCESSOR,
+  NgControlStatus,
+  NgModel
+} from "./chunk-DFMHK6KB.js";
 import {
   BaseIcon,
   ButtonDirective,

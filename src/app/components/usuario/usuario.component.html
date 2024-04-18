@@ -7,15 +7,28 @@
     
     <div *ngIf="users">
         <p-table
+            #dt1
             [value]="users"
             [paginator]="true"
             [rows]="5"
             selectionMode="single"
             [(selection)]="user"
-            (onRowSelect)="irDetalle(user)">
+            (onRowSelect)="irDetalle(user)"
+            [globalFilterFields]="['name']">
+            <ng-template pTemplate="caption">
+                <div class="flex">
+                    <span class="p-input-icon-left ml-auto">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" placeholder="Search keyword" />
+                    </span>
+                </div>
+            </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <th style="width:25%">Nombre</th>
+                    <th style="width:25%">
+                        Name
+                        <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+                    </th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-user>
