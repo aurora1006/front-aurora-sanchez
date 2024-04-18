@@ -1,53 +1,62 @@
 {
-  "hash": "5fc2465b",
-  "configHash": "c172f541",
-  "lockfileHash": "64ef1a7e",
-  "browserHash": "9d286704",
+  "hash": "ebbc8226",
+  "configHash": "5d7512c3",
+  "lockfileHash": "2effdb18",
+  "browserHash": "6b16453a",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "6ee21252",
+      "fileHash": "afd99853",
       "needsInterop": false
     },
     "@angular/common/http": {
       "src": "../../../../../node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "5ab007b1",
+      "fileHash": "fe8345f6",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "7925fb51",
+      "fileHash": "370c14a1",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "d8b41f3a",
+      "fileHash": "abb3fea4",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "8c1b5f68",
+      "fileHash": "a9c6a49a",
       "needsInterop": false
     },
     "primeng/api": {
       "src": "../../../../../node_modules/primeng/fesm2022/primeng-api.mjs",
       "file": "primeng_api.js",
-      "fileHash": "fc025e11",
+      "fileHash": "f2a7b5a2",
       "needsInterop": false
     },
-    "primeng/table": {
-      "src": "../../../../../node_modules/primeng/fesm2022/primeng-table.mjs",
-      "file": "primeng_table.js",
-      "fileHash": "7afa4555",
+    "primeng/button": {
+      "src": "../../../../../node_modules/primeng/fesm2022/primeng-button.mjs",
+      "file": "primeng_button.js",
+      "fileHash": "33712c10",
+      "needsInterop": false
+    },
+    "primeng/dataview": {
+      "src": "../../../../../node_modules/primeng/fesm2022/primeng-dataview.mjs",
+      "file": "primeng_dataview.js",
+      "fileHash": "6e10587b",
       "needsInterop": false
     }
   },
   "chunks": {
+    "chunk-HNIAFNCG": {
+      "file": "chunk-HNIAFNCG.js"
+    },
     "chunk-2QAOXEUH": {
       "file": "chunk-2QAOXEUH.js"
     },

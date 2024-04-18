@@ -6,18 +6,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserService } from './services/user.service';
 import { DetalleUsuarioComponent } from './components/detalle-usuario/detalle-usuario.component';
-import { TableModule } from 'primeng/table';
+import { DataViewModule } from 'primeng/dataview';
+import { ButtonModule } from 'primeng/button';
+import { UsuarioComponent } from './components/usuario/usuario.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DetalleUsuarioComponent
+    DetalleUsuarioComponent,
+    UsuarioComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    TableModule
+    DataViewModule,
+    ButtonModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

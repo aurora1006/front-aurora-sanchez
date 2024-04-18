@@ -1,17 +1,25 @@
 <p>DETALLE USUARIO</p>
 
-<div *ngIf="users">
-    <p-table [value]="users" [tableStyle]="{ 'min-width': '50rem' }">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>Name</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-user>
-            <tr>
-                <td>{{ user.name }}</td>
-            </tr>
-        </ng-template>
-    </p-table>
+<div class="formgrid grid">
+    <div class="field col-12 md:col-6">
+        <label for="firstname6">Name:</label>
+        {{user.name}}
+    </div>
+    <div class="field col-12 md:col-6">
+        <label for="firstname6">User name:</label>
+        {{user.username}}
+    </div>
+    <div class="field col-12 md:col-6">
+        <label for="firstname6">Phone:</label>
+        {{user.phone}}
+    </div>
+    <div class="field col-12 md:col-6">
+        <label for="firstname6">Email:</label>
+        {{user.email}}
+    </div>
+    <div class="field col-12 md:col-6">
+        <label for="firstname6">Website:</label>
+        {{user.website}}
+    </div>
 </div>
 
