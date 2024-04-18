@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detalle-usuario',
@@ -7,11 +8,18 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DetalleUsuarioComponent implements OnInit {
 
-  @Input('user')
-  public user!: any;
+  public user: any;
+
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log(this.user);
+    this.route.paramMap.subscribe(params => {
+      this.user = history.state.user;
+    });
+  }
+
+  regresar() {
+    this.router.navigate([ `/users`, ]);
   }
   
 }

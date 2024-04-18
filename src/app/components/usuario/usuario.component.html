@@ -1,4 +1,4 @@
-<div *ngIf="!detail" style="margin: 100px;">
+<div style="margin: 100px;">
     <div style="text-align: center; padding:3px; background-color: #f0f0f0;">
         <h1 style="font-size: 24px; color: #333;">USUARIOS</h1>
     </div>
@@ -12,7 +12,7 @@
             [rows]="5"
             selectionMode="single"
             [(selection)]="user"
-            (onRowSelect)="irDetalle(true, user)">
+            (onRowSelect)="irDetalle(user)">
             <ng-template pTemplate="header">
                 <tr>
                     <th style="width:25%">Nombre</th>
@@ -31,8 +31,4 @@
             </ng-template>
         </p-table>
     </div>
-</div>
-<div *ngIf="detail" style="margin: 100px;">
-    <app-detalle-usuario [user]="user"></app-detalle-usuario>
-    <p-button (onClick)="irDetalle(false, null)" label="Regresar"></p-button>
 </div>

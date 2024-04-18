@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-usuario',
@@ -12,17 +13,21 @@ export class UsuarioComponent {
   user: any;
   detail: boolean = false;
 
-  constructor(private userSrv: UserService) { }
+  constructor(private userSrv: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.userSrv.getUsers().subscribe(u => {
       this.users = u;
-      console.log(this.users);
     });
   }
 
-  irDetalle(v: boolean, user?: any) {
-    this.user = user;
-    this.detail = v;
+  irDetalle(user?: any) {
+    const userObj: NavigationExtras = {
+      state: {
+        user: user
+      }
+    };
+    this.router.navigate([ `/detail` ], userObj);
+
   }
 }

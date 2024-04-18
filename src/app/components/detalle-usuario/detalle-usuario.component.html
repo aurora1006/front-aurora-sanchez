@@ -1,29 +1,30 @@
-<div class="field col-12 md:col-6">
+<div style="margin: 100px;">
     <div style="text-align: center; padding:3px; background-color: #f0f0f0;">
         <h1 style="font-size: 24px; color: #333;">DETALLE</h1>
     </div>
-</div>
-<p-divider></p-divider>
-<div class="formgrid grid">
-    <div class="field col-12 md:col-6">
-        <label for="firstname6">Name:</label>
-        {{user.name}}
-    </div>
-    <div class="field col-12 md:col-6">
-        <label for="firstname6">User name:</label>
-        {{user.username}}
-    </div>
-    <div class="field col-12 md:col-6">
-        <label for="firstname6">Phone:</label>
-        {{user.phone}}
-    </div>
-    <div class="field col-12 md:col-6">
-        <label for="firstname6">Email:</label>
-        {{user.email}}
-    </div>
-    <div class="field col-12 md:col-6">
-        <label for="firstname6">Website:</label>
-        {{user.website}}
+    <p-divider></p-divider>
+    <div class="formgrid grid">
+        <div class="field col-12 md:col-6">
+            <label for="firstname6">Name:</label>
+            {{user.name}}
+        </div>
+        <div class="field col-12 md:col-6">
+            <label for="firstname6">User name:</label>
+            {{user.username}}
+        </div>
+        <div class="field col-12 md:col-6">
+            <label for="firstname6">Phone:</label>
+            {{user.phone}}
+        </div>
+        <div class="field col-12 md:col-6">
+            <label for="firstname6">Email:</label>
+            {{user.email}}
+        </div>
+        <div class="field col-12 md:col-6">
+            <label for="firstname6">Website:</label>
+            {{user.website}}
+        </div>
+        <p-button (onClick)="regresar()" label="Regresar"></p-button>
     </div>
 </div>
 
