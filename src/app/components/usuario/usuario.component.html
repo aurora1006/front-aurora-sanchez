@@ -1,20 +1,14 @@
 <div *ngIf="!detail">
     <div *ngIf="users">
         <p-dataView #dv [value]="users" [rows]="5" [paginator]="true">
-            <ng-template let-users pTemplate="list">
-                <div class="grid">
-                    <div class="col-12" *ngFor="let item of users; let first = first">
-                        <div class="flex">
-                            <div class="col-12">
-                                <div class="col-5">
-                                    <div class="text-2xl font-bold text-900">{{ item.name }}</div>
-                                </div>
-                                <div class="col-3">
-                                    <p-button (onClick)="irDetalle(true, item)" label="Ir al detalle"></p-button>
-                                </div>
+            <ng-template let-user pTemplate="list">
+                <div class="col-12 pb-3" *ngFor="let item of users; let first = first">
+                        <div class="col-6">
+                            <div class="text-2xl font-bold text-900">
+                                {{ item.name }} 
+                                <p-button (onClick)="irDetalle(true, item)" label="Ir al detalle"></p-button>
                             </div>
                         </div>
-                    </div>
                 </div>
             </ng-template>
         </p-dataView>

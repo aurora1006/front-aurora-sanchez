@@ -7,7 +7,7 @@ import {
   Ripple,
   RippleModule,
   SpinnerIcon
-} from "./chunk-HNIAFNCG.js";
+} from "./chunk-TDIDPJQD.js";
 import {
   FilterService,
   Footer,

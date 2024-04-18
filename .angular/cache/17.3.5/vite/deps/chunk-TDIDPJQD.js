@@ -1968,12 +1968,12 @@ var ButtonModule = class _ButtonModule {
 export {
   DomHandler,
   ConnectedOverlayScrollHandler,
-  BaseIcon,
-  SpinnerIcon,
   Ripple,
   RippleModule,
+  BaseIcon,
+  SpinnerIcon,
   ButtonDirective,
   Button,
   ButtonModule
 };
-//# sourceMappingURL=chunk-HNIAFNCG.js.map
+//# sourceMappingURL=chunk-TDIDPJQD.js.map

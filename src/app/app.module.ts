@@ -8,6 +8,7 @@ import { UserService } from './services/user.service';
 import { DetalleUsuarioComponent } from './components/detalle-usuario/detalle-usuario.component';
 import { DataViewModule } from 'primeng/dataview';
 import { ButtonModule } from 'primeng/button';
+import { DividerModule } from 'primeng/divider';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 
 @NgModule({
@@ -21,7 +22,8 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
     AppRoutingModule,
     HttpClientModule,
     DataViewModule,
-    ButtonModule
+    ButtonModule,
+    DividerModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
