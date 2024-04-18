@@ -1,0 +1,17 @@
+<p>DETALLE USUARIO</p>
+
+<div *ngIf="users">
+    <p-table [value]="users" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+            <tr>
+                <td>{{ user.name }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
